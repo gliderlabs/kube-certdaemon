@@ -26,6 +26,7 @@ const (
 	DefaultNamespace    = "default"
 	DefaultInterval     = "1h"
 	DefaultProvider     = "route53"
+	DefaultEndpoint     = "https://acme-v01.api.letsencrypt.org/directory"
 )
 
 func GetEnv(key, defaultVal string) string {
@@ -109,6 +110,7 @@ func main() {
 	// get our environment config
 	namespace := GetEnv("NAMESPACE", DefaultNamespace)
 	secret := GetEnv("CONFIG_SECRET", DefaultConfigSecret)
+	endpoint := GetEnv("ACME_ENDPOINT", DefaultEndpoint)
 	provider := GetEnv("PROVIDER", DefaultProvider)
 	intervalStr := GetEnv("INTERVAL", DefaultInterval)
 	interval, err := time.ParseDuration(intervalStr)
@@ -178,7 +180,7 @@ func main() {
 			}
 
 			// new ACME client
-			var acme_client, errr = acme.NewClient("https://acme-staging.api.letsencrypt.org/directory", &user, acme.RSA2048)
+			var acme_client, errr = acme.NewClient(endpoint, &user, acme.RSA2048)
 			if errr != nil {
 				log.Fatal(err)
 			}

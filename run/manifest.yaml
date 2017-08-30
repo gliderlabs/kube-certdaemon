@@ -18,3 +18,5 @@ spec:
           value: <access-key>
         - name: AWS_SECRET_ACCESS_KEY
           value: <secret-key>
+        - name: ACME_ENDPOINT
+          value: https://acme-staging.api.letsencrypt.org/directory

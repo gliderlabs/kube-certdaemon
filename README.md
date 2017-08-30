@@ -21,6 +21,8 @@ Environment variables:
 * `CONFIG_SECRET` - k8s secret with config (see below). default is `letsencrypt`
 * `INTERVAL` - interval for checking if certs need updating. ex: "30m". default is `1h`
 * `PROVIDER` - lego provider to use for dns challenge. default is `route53`
+* `ACME_ENDPOINT` - URL for ACME API. default is live (`https://acme-v01...`)!
+set to staging endpoint for testing (`https://acme-staging.api.letsencrypt.org/directory`).
 
 Other environment variables will need to be provided based on your provider.
 For example, `route53` will need:

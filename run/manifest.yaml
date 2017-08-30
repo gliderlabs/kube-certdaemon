@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: certdaemon
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: certdaemon
+    spec:
+      containers:
+      - name: certdaemon
+        image: gliderlabs/certdaemon:latest
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          value: <access-key>
+        - name: AWS_SECRET_ACCESS_KEY
+          value: <secret-key>
